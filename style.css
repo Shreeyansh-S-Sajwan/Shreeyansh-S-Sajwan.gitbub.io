@@ -1,0 +1,402 @@
+/* Color Palette Variables */
+:root {
+    --bg-main: #0a192f;        /* Deep Space Navy */
+    --bg-surface: #112240;     /* Slate Blue Surface */
+    --text-primary: #64ffda;   /* Cyan / Electric Accent */
+    --text-bright: #e2e8f0;    /* Crisp Text */
+    --text-muted: #8892b0;     /* Subdued Metadata Text */
+    --blue-glow: rgba(100, 255, 218, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-bright);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Navbar Customization */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 10%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 25, 47, 0.85);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.navbar.shrink {
+    padding: 0.8rem 10%;
+    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-bright);
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+/* Sections Global Structure */
+section {
+    padding: 8rem 10% 4rem 10%;
+}
+
+.section-header {
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: var(--text-bright);
+}
+
+.underline {
+    width: 60px;
+    height: 3px;
+    background-color: var(--text-primary);
+    margin-top: 0.5rem;
+}
+
+/* Hero Content Styling */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.greeting {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.name {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.dynamic-text {
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.bio {
+    max-width: 600px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+/* UI Elements: Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    background: transparent;
+    transition: all 0.25s ease;
+}
+
+.btn:hover {
+    background: var(--blue-glow);
+    transform: translateY(-3px);
+}
+
+/* Coding Profiles Section Elements */
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.profile-card {
+    background-color: var(--bg-surface);
+    padding: 2.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-bright);
+    position: relative;
+    border: 1px solid transparent;
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.profile-card h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+}
+
+.profile-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.link-arrow {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+/* Hover Physics for Cards */
+.profile-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--text-primary);
+    box-shadow: 0 10px 20px -15px rgba(100, 255, 218, 0.3);
+}
+
+.profile-card:hover .link-arrow {
+    transform: translateX(5px);
+    color: var(--text-primary);
+}
+
+/* Project Cards Construction */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--bg-surface);
+    padding: 2.5rem;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+}
+
+.project-tag {
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-tech-stack {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.project-tech-stack span {
+    font-size: 0.85rem;
+    color: var(--text-bright);
+    opacity: 0.8;
+    background: rgba(254, 254, 254, 0.05);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+/* Contact Module Layout */
+.contact-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-container .underline {
+    margin: 0.5rem auto 2rem auto;
+}
+
+.contact-container p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Footer Accent */
+footer {
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(254, 254, 254, 0.05);
+}
+
+/* JavaScript Engine Effects Properties */
+.typewriter {
+    border-right: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    padding-right: 4px;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: var(--text-primary); }
+}
+
+/* Scroll Reveal Initial Hide States */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hybrid Contact Layout */
+.contact-hybrid {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    align-items: center;
+}
+
+.gmail-text {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+}
+
+.gmail-text .label {
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-right: 0.5rem;
+}
+
+.gmail-text .value {
+    color: var(--text-muted);
+}
+
+.linkedin-box {
+    margin-top: 0.5rem;
+}
+
+/* --- Hero Section - New Layout and Portrait Styling --- */
+
+/* Parent container to align text and image side-by-side */
+.hero-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Optional cap to keep content contained on large screens */
+    margin: 0 auto;
+}
+
+/* Ensure text doesn't get squeezed */
+.hero-content {
+    flex: 1;
+    padding-right: 3rem; /* Spacing between text and image */
+}
+
+/* Portrait container to handle alignment and border */
+.hero-portrait-container {
+    flex-shrink: 0; /* Prevent the image from shrinking */
+    width: 300px;   /* Set desired width (matches visual mockup) */
+    height: 300px;  /* Set desired height for a square base */
+    border-radius: 50%; /* Make the container a perfect circle */
+    border: 8px solid var(--text-primary); /* Prominent BLUE border from your theme */
+    overflow: hidden; /* Important: this clips the image into the circular shape */
+    box-shadow: 0 0 25px var(--blue-glow); /* Adds a subtle glow effect (optional but recommended) */
+}
+
+/* The actual image inside the container */
+.hero-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the circle without distortion */
+}
+
+/* --- Game Project Screenshots Grid --- */
+
+/* Adjust the game card to handle the vertical layout cleanly */
+.project-card.game-tech {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+/* Create a balanced 2-column container for the screenshots */
+.game-screenshots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+/* Style the individual screenshots */
+.game-ss {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* Fits standard landscape screenshots cleanly */
+    object-fit: cover;    /* Prevents image distortion */
+    border-radius: 6px;
+    border: 1px solid rgba(100, 255, 218, 0.2); /* Subtle blue theme tint */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effects for game images */
+.game-ss:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: var(--text-primary); /* Shines electric blue on hover */
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.1);
+    cursor: zoom-in;
+}
+
+/* Responsive adjustment for small mobile screens */
+@media (max-width: 480px) {
+    .game-screenshots {
+        grid-template-columns: 1fr; /* Stacks screenshots vertically if screen is tiny */
+    }
+}
