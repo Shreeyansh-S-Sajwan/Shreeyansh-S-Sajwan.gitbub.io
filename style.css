@@ -1,291 +1,159 @@
-/* Color Palette Variables */
+/* ==========================================================================
+   1. VARIABLES & RESET
+   ========================================================================== */
 :root {
-    --bg-main: #0a192f;        /* Deep Space Navy */
-    --bg-surface: #112240;     /* Slate Blue Surface */
-    --text-primary: #64ffda;   /* Cyan / Electric Accent */
-    --text-bright: #e2e8f0;    /* Crisp Text */
-    --text-muted: #8892b0;     /* Subdued Metadata Text */
-    --blue-glow: rgba(100, 255, 218, 0.15);
+    /* Color Palette */
+    --bg-main: #0a1128;          /* Deep Space/Midnight Blue */
+    --bg-surface: #101f42;       /* Lighter Blue-Navy for Cards/Navbar */
+    --text-bright: #e6f1ff;      /* Off-White crisp heading text */
+    --text-muted: #8892b0;       /* Muted slate-blue for descriptions */
+    --text-primary: #00d2ff;     /* Electric Blue Accent Color */
+    --blue-glow: rgba(0, 210, 255, 0.25);
+    
+    /* System Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'SF Pro Display', -apple-system, 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
     scroll-behavior: smooth;
+    background-color: var(--bg-main);
+    color: var(--text-muted);
 }
 
 body {
-    background-color: var(--bg-main);
-    color: var(--text-bright);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
-    line-height: 1.6;
 }
 
-/* Navbar Customization */
+/* Custom Scrollbar for modern browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--bg-surface);
+    border-radius: 4px;
+    border: 1px solid var(--text-primary);
+}
+
+/* ==========================================================================
+   2. GLOBAL TYPOGRAPHY & BUTTONS
+   ========================================================================== */
+h1, h2, h3 {
+    color: var(--text-bright);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.underline {
+    width: 60px;
+    height: 4px;
+    background-color: var(--text-primary);
+    margin: 0.5rem 0 2rem 0;
+    border-radius: 2px;
+}
+
+/* Reusable Standard Button */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    background: transparent;
+    transition: var(--transition-smooth);
+}
+
+.btn:hover {
+    background-color: var(--blue-glow);
+    box-shadow: 0 0 15px var(--blue-glow);
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   3. NAVIGATION BAR
+   ========================================================================== */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 10%;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    background: rgba(10, 25, 47, 0.85);
+    background-color: rgba(10, 17, 40, 0.9);
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    z-index: 1000;
+    transition: var(--transition-smooth);
 }
 
+/* Triggered via Javascript scroll module */
 .navbar.shrink {
     padding: 0.8rem 10%;
-    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background-color: var(--bg-surface);
 }
 
 .logo {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-primary);
+    letter-spacing: 0.5px;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .nav-links a {
-    text-decoration: none;
     color: var(--text-bright);
     font-size: 0.95rem;
-    transition: color 0.2s;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    padding-bottom: 4px;
 }
 
 .nav-links a:hover {
     color: var(--text-primary);
 }
 
-/* Sections Global Structure */
-section {
-    padding: 8rem 10% 4rem 10%;
-}
-
-.section-header {
-    margin-bottom: 3rem;
-}
-
-.section-header h2 {
-    font-size: 2rem;
-    color: var(--text-bright);
-}
-
-.underline {
-    width: 60px;
-    height: 3px;
-    background-color: var(--text-primary);
-    margin-top: 0.5rem;
-}
-
-/* Hero Content Styling */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 0 10%;
-}
-
-.greeting {
+/* Multi-page layout marker highlighting active menu index */
+.nav-links a.active-nav {
     color: var(--text-primary);
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-}
-
-.name {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-}
-
-.dynamic-text {
-    font-size: 2.5rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-}
-
-.bio {
-    max-width: 600px;
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-}
-
-/* UI Elements: Buttons */
-.btn {
-    display: inline-block;
-    padding: 0.9rem 1.8rem;
-    border: 1px solid var(--text-primary);
-    color: var(--text-primary);
-    text-decoration: none;
-    border-radius: 4px;
     font-weight: 600;
-    background: transparent;
-    transition: all 0.25s ease;
+    border-bottom: 2px solid var(--text-primary);
 }
 
-.btn:hover {
-    background: var(--blue-glow);
-    transform: translateY(-3px);
-}
-
-/* Coding Profiles Section Elements */
-.profile-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.profile-card {
-    background-color: var(--bg-surface);
-    padding: 2.5rem;
-    border-radius: 6px;
-    text-decoration: none;
-    color: var(--text-bright);
-    position: relative;
-    border: 1px solid transparent;
-    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.profile-card h3 {
-    margin-bottom: 0.8rem;
-    font-size: 1.4rem;
-}
-
-.profile-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
-.link-arrow {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    transition: transform 0.2s;
-}
-
-/* Hover Physics for Cards */
-.profile-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--text-primary);
-    box-shadow: 0 10px 20px -15px rgba(100, 255, 218, 0.3);
-}
-
-.profile-card:hover .link-arrow {
-    transform: translateX(5px);
-    color: var(--text-primary);
-}
-
-/* Project Cards Construction */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    background: var(--bg-surface);
-    padding: 2.5rem;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 280px;
-}
-
-.project-tag {
-    font-size: 0.8rem;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.project-card h3 {
-    font-size: 1.5rem;
-    margin: 0.5rem 0 1rem 0;
-}
-
-.project-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-}
-
-.project-tech-stack {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.project-tech-stack span {
-    font-size: 0.85rem;
-    color: var(--text-bright);
-    opacity: 0.8;
-    background: rgba(254, 254, 254, 0.05);
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-}
-
-/* Contact Module Layout */
-.contact-container {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.contact-container .underline {
-    margin: 0.5rem auto 2rem auto;
-}
-
-.contact-container p {
-    color: var(--text-muted);
-    margin-bottom: 2.5rem;
-}
-
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-/* Footer Accent */
-footer {
-    text-align: center;
-    padding: 2.5rem;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    border-top: 1px solid rgba(254, 254, 254, 0.05);
-}
-
-/* JavaScript Engine Effects Properties */
-.typewriter {
-    border-right: 2px solid var(--text-primary);
-    color: var(--text-primary);
-    padding-right: 4px;
-    animation: blink 0.75s step-end infinite;
-}
-
-@keyframes blink {
-    from, to { border-color: transparent }
-    50% { border-color: var(--text-primary); }
-}
-
-/* Scroll Reveal Initial Hide States */
+/* ==========================================================================
+   4. SCROLL REVEAL ENGINE
+   ========================================================================== */
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .reveal.active {
@@ -293,73 +161,212 @@ footer {
     transform: translateY(0);
 }
 
-/* Hybrid Contact Layout */
-.contact-hybrid {
-    margin-top: 2.5rem;
+/* ==========================================================================
+   5. HOME PAGE - HERO SECTION
+   ========================================================================== */
+.hero {
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    gap: 1.8rem;
     align-items: center;
+    padding: 0 10%;
+    padding-top: 4rem; /* Safe navigation offset clearance */
 }
 
-.gmail-text {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-}
-
-.gmail-text .label {
-    font-weight: 600;
-    color: var(--text-bright);
-    margin-right: 0.5rem;
-}
-
-.gmail-text .value {
-    color: var(--text-muted);
-}
-
-.linkedin-box {
-    margin-top: 0.5rem;
-}
-
-/* --- Hero Section - New Layout and Portrait Styling --- */
-
-/* Parent container to align text and image side-by-side */
 .hero-flex-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px; /* Optional cap to keep content contained on large screens */
+    max-width: 1200px;
     margin: 0 auto;
+    gap: 3rem;
 }
 
-/* Ensure text doesn't get squeezed */
 .hero-content {
     flex: 1;
-    padding-right: 3rem; /* Spacing between text and image */
 }
 
-/* Portrait container to handle alignment and border */
+.greeting {
+    color: var(--text-primary);
+    font-family: monospace;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.name {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.dynamic-text {
+    font-size: 2rem;
+    color: var(--text-bright);
+    margin-bottom: 1.5rem;
+    min-height: 2.8rem; /* Prevents layout shifting text hops */
+}
+
+/* Fake terminal cursor element indicator */
+.typewriter::after {
+    content: '|';
+    color: var(--text-primary);
+    animation: blink 0.75s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.bio {
+    max-width: 540px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+/* Circular Portrait Photo Framework */
 .hero-portrait-container {
-    flex-shrink: 0; /* Prevent the image from shrinking */
-    width: 300px;   /* Set desired width (matches visual mockup) */
-    height: 300px;  /* Set desired height for a square base */
-    border-radius: 50%; /* Make the container a perfect circle */
-    border: 8px solid var(--text-primary); /* Prominent BLUE border from your theme */
-    overflow: hidden; /* Important: this clips the image into the circular shape */
-    box-shadow: 0 0 25px var(--blue-glow); /* Adds a subtle glow effect (optional but recommended) */
+    flex-shrink: 0;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 6px solid var(--text-primary);
+    overflow: hidden;
+    box-shadow: 0 0 30px var(--blue-glow);
 }
 
-/* The actual image inside the container */
 .hero-portrait {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image fills the circle without distortion */
+    object-fit: cover;
 }
 
-/* --- Game Project Screenshots Grid --- */
+/* ==========================================================================
+   6. MULTI-PAGE INNER CONTAINER STANDARDIZATION
+   ========================================================================== */
+.page-content {
+    padding: 8rem 10% 4rem 10%;
+    flex: 1; /* Standardizes footer pinning baseline metrics */
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
 
-/* Adjust the game card to handle the vertical layout cleanly */
+.section-header h2 {
+    font-size: 2.2rem;
+}
+
+/* ==========================================================================
+   7. CODING PROFILES PAGE
+   ========================================================================== */
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.profile-card {
+    background-color: var(--bg-surface);
+    padding: 2rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 210, 255, 0.05);
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.profile-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.profile-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding-right: 1.5rem;
+}
+
+.link-arrow {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+/* Profile Interactivity Transitions */
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--text-primary);
+}
+
+.profile-card:hover .link-arrow {
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   8. FEATURED PROJECTS PAGE
+   ========================================================================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.project-card {
+    background-color: var(--bg-surface);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 210, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.project-tag {
+    color: var(--text-primary);
+    font-family: monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.project-card h3 {
+    font-size: 1.6rem;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.project-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.project-tech-stack span {
+    font-family: monospace;
+    font-size: 0.85rem;
+    background-color: rgba(10, 17, 40, 0.6);
+    color: var(--text-bright);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid rgba(230, 241, 255, 0.1);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--text-primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Specialized Flex Rules for the Game Card Grid */
 .project-card.game-tech {
     display: flex;
     flex-direction: column;
@@ -367,7 +374,6 @@ footer {
     gap: 1.5rem;
 }
 
-/* Create a balanced 2-column container for the screenshots */
 .game-screenshots {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -375,28 +381,128 @@ footer {
     margin-top: 0.5rem;
 }
 
-/* Style the individual screenshots */
-.game-ss {
+.ss {
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9; /* Fits standard landscape screenshots cleanly */
-    object-fit: cover;    /* Prevents image distortion */
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     border-radius: 6px;
-    border: 1px solid rgba(100, 255, 218, 0.2); /* Subtle blue theme tint */
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 210, 255, 0.15);
+    transition: var(--transition-smooth);
 }
 
-/* Hover effects for game images */
-.game-ss:hover {
-    transform: translateY(-2px) scale(1.02);
-    border-color: var(--text-primary); /* Shines electric blue on hover */
-    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.1);
+.ss:hover {
+    transform: translateY(-2px) scale(1.03);
+    border-color: var(--text-primary);
+    box-shadow: 0 5px 15px var(--blue-glow);
     cursor: zoom-in;
 }
 
-/* Responsive adjustment for small mobile screens */
-@media (max-width: 480px) {
-    .game-screenshots {
-        grid-template-columns: 1fr; /* Stacks screenshots vertically if screen is tiny */
+/* ==========================================================================
+   9. HYBRID CONTACT PAGE
+   ========================================================================== */
+.contact-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 4rem auto 0 auto;
+}
+
+.contact-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.contact-container .underline {
+    margin: 0.5rem auto 2rem auto;
+}
+
+.contact-hybrid {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.gmail-text {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    background-color: var(--bg-surface);
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 210, 255, 0.1);
+}
+
+.gmail-text .label {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-right: 0.5rem;
+}
+
+.gmail-text .value {
+    color: var(--text-bright);
+    user-select: all; /* Allows immediate single-click selection */
+}
+
+.linkedin-box {
+    margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   10. SITE FOOTER
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: var(--bg-main);
+    border-top: 1px solid rgba(16, 31, 66, 0.4);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    margin-top: auto; /* Locks footer to screen base metrics layout context */
+}
+
+/* ==========================================================================
+   11. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 968px) {
+    .navbar { padding: 1.5rem 5%; }
+    .navbar.shrink { padding: 0.8rem 5%; }
+    .page-content { padding: 7rem 5% 4rem 5%; }
+    .hero { padding: 0 5%; }
+    
+    .hero-flex-container {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2rem;
+        justify-content: center;
+    }
+    
+    .hero-portrait-container {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .bio { margin: 0 auto 2.5rem auto; }
+    .name { font-size: 2.8rem; }
+    .dynamic-text { font-size: 1.6rem; }
+}
+
+@media (max-width: 600px) {
+    .nav-links { gap: 1.2rem; }
+    .nav-links a { font-size: 0.85rem; }
+    .logo { font-size: 1.2rem; }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .project-card {
+        padding: 1.5rem;
+    }
+    .screenshots {
+        grid-template-columns: 1fr; /* Stacks screenshots on narrow screens */
+    }
+    .gmail-text {
+        font-size: 1rem;
+        padding: 1rem;
     }
 }
