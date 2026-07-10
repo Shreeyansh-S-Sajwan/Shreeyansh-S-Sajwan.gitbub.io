@@ -2,12 +2,11 @@
    1. VARIABLES & RESET
    ========================================================================== */
 :root {
-    /* Color Palette */
-    --bg-main: #0a1128;          /* Deep Space/Midnight Blue */
-    --bg-surface: #101f42;       /* Lighter Blue-Navy for Cards/Navbar */
-    --text-bright: #e6f1ff;      /* Off-White crisp heading text */
-    --text-muted: #8892b0;       /* Muted slate-blue for descriptions */
-    --text-primary: #00d2ff;     /* Electric Blue Accent Color */
+    --bg-main: #0a1128;          
+    --bg-surface: #101f42;       
+    --text-bright: #e6f1ff;      
+    --text-muted: #8892b0;       
+    --text-primary: #00d2ff;     
     --blue-glow: rgba(0, 210, 255, 0.25);
     
     /* System Transitions */
